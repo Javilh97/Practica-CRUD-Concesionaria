@@ -77,6 +77,11 @@ public class AltaAutomovil extends javax.swing.JFrame {
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon("C:\\Cursos\\curso_Java\\NetBeansProjects\\automovil\\recursos\\limpiar.png")); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,7 +189,25 @@ public class AltaAutomovil extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
+        String modelo = txtModelo.getText();
+        String marca = txtMarca.getText();
+        String motor = txtMotor.getText();
+        String color = txtColor.getText();
+        String placa = txtPlaca.getText();
+        int numPuertas = Integer.parseInt(txtNumPuertas.getText());
+        
+        control.agregarAutmovil(modelo,marca,motor,color,placa,numPuertas);
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtModelo.setText("");
+        txtMarca.setText("");
+        txtMotor.setText("");
+        txtColor.setText("");
+        txtPlaca.setText("");
+        txtNumPuertas.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

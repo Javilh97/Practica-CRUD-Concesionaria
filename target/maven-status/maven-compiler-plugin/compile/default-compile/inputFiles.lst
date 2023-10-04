@@ -1,3 +1,10 @@
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\persistencia\ControladoraPersistencia.java
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\persistencia\exceptions\PreexistingEntityException.java
 C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\igu\Principal.java
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\persistencia\AutomovilJpaController.java
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\persistencia\exceptions\NonexistentEntityException.java
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\igu\AltaAutomovil.java
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\persistencia\exceptions\IllegalOrphanException.java
 C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\Automovil.java
 C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\logica\Automovil.java
+C:\Cursos\curso_Java\NetBeansProjects\automovil\src\main\java\com\mycompany\automovil\logica\Controladora.java
