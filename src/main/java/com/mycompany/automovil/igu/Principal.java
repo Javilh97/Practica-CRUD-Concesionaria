@@ -43,6 +43,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnConsulta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnConsulta.setText("Consulta, edición y baja");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
@@ -103,6 +108,13 @@ public class Principal extends javax.swing.JFrame {
         alta.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnAltaAutoActionPerformed
+
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        ConsultaAutomovil consulta = new ConsultaAutomovil();
+        consulta.setVisible(true);
+        consulta.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnConsultaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
