@@ -4,6 +4,8 @@ package com.mycompany.automovil.igu;
 import com.mycompany.automovil.logica.Automovil;
 import com.mycompany.automovil.logica.Controladora;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaAutomovil extends javax.swing.JFrame {
@@ -148,7 +150,28 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        //Verificar que la tabla no este vacia
+        if(tablaAutos.getRowCount() > 0){
+            //Verificar que se haya seleccionado un registro
+            if(tablaAutos.getSelectedRow() != -1){
+                //Obtener el id del auto que quiero editar
+                int idAuto = Integer.parseInt(String.valueOf(tablaAutos.getValueAt
+                (tablaAutos.getSelectedRow(),0)));
+                
+                EditarAuto editAuto = new EditarAuto(idAuto);
+                editAuto.setVisible(true);
+                editAuto.setLocationRelativeTo(null);
+                
+                this.dispose();
+                
+            }
+            else {
+                mostrarMensaje("No selecciono un registro","Error","Seleccione un registro");
+            }
+        } 
+        else {
+            mostrarMensaje("No hay registros en la tabla","Error","No hay registros");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
@@ -159,7 +182,27 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        
+        //Verificar que la tabla no este vacua
+        if(tablaAutos.getRowCount() > 0){
+            //Verificar que se haya seleccionado un registro
+            if(tablaAutos.getSelectedRow() != -1){
+                //Obtener el id del auto que quiero borrar
+                int idAuto = Integer.parseInt(String.valueOf(tablaAutos.getValueAt
+                (tablaAutos.getSelectedRow(),0)));
+                
+                control.borrarAuto(idAuto);
+                cargarTabla();
+                mostrarMensaje("Auto borrado correctamente","Info","Borrado Exitoso");
+            }
+            else {
+                mostrarMensaje("No selecciono un registro","Error","Seleccione un registro");
+            }
+        } 
+        else {
+            mostrarMensaje("No hay registros en la tabla","Error","No hay registros");
+        }
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -168,6 +211,19 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
+    public void mostrarMensaje(String mensaje, String tipo, String titulo){
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if(tipo.equals("Info")){
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(tipo.equals("Error")){
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;

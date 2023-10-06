@@ -1,16 +1,20 @@
 
 package com.mycompany.automovil.igu;
 
+import com.mycompany.automovil.logica.Automovil;
 import com.mycompany.automovil.logica.Controladora;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-public class AltaAutomovil extends javax.swing.JFrame {
-
-    Controladora control = new Controladora();
-
-    public AltaAutomovil() {
+public class EditarAuto extends javax.swing.JFrame {
+    
+    Controladora control = null;
+    Automovil auto = new Automovil();
+    
+    public EditarAuto(int idAuto) {
+        control = new Controladora();
         initComponents();
+        cargarDatosAUto(idAuto);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,13 +37,13 @@ public class AltaAutomovil extends javax.swing.JFrame {
         txtModelo = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         btnAtras = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel1.setText("ALTA DE AUTMÓVILES");
+        jLabel1.setText("EDITAR DATOS AUTO");
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Cursos\\curso_Java\\NetBeansProjects\\automovil\\recursos\\registro-auto.jpg")); // NOI18N
 
@@ -69,11 +73,11 @@ public class AltaAutomovil extends javax.swing.JFrame {
             }
         });
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon("C:\\Cursos\\curso_Java\\NetBeansProjects\\automovil\\recursos\\agregar.png")); // NOI18N
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setIcon(new javax.swing.ImageIcon("C:\\Cursos\\curso_Java\\NetBeansProjects\\automovil\\recursos\\agregar.png")); // NOI18N
+        btnEditar.setText("Guardar Cambios");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -112,7 +116,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnLimpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAgregar)
+                        .addComponent(btnEditar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +126,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
                             .addComponent(txtMotor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(47, 47, 47))))
         );
@@ -160,7 +164,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimpiar)
-                            .addComponent(btnAgregar)
+                            .addComponent(btnEditar)
                             .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
@@ -172,7 +176,9 @@ public class AltaAutomovil extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,30 +189,31 @@ public class AltaAutomovil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        Principal princ = new Principal();
-        princ.setVisible(true);
-        princ.setLocationRelativeTo(null);
+        ConsultaAutomovil consulAuto = new ConsultaAutomovil();
+        consulAuto.setVisible(true);
+        consulAuto.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
         String modelo = txtModelo.getText();
         String marca = txtMarca.getText();
         String motor = txtMotor.getText();
         String color = txtColor.getText();
         String placa = txtPlaca.getText();
         int numPuertas = Integer.parseInt(txtNumPuertas.getText());
+
+        control.modificarAutmovil(auto,modelo,marca,motor,color,placa,numPuertas);
         
-         JOptionPane optionPane = new JOptionPane("Se guardo correctamente");
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Guardado Correctamente");
-        dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);
+        mostrarMensaje("Datos modificados correctamente","Info","Edicion Exitosa");
         
-        control.agregarAutmovil(modelo,marca,motor,color,placa,numPuertas);
+        ConsultaAutomovil consul = new ConsultaAutomovil();
+        consul.setVisible(true);
+        consul.setLocationRelativeTo(null);
+        this.dispose();
         
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtModelo.setText("");
@@ -219,8 +226,8 @@ public class AltaAutomovil extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -239,4 +246,29 @@ public class AltaAutomovil extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 
+    private void cargarDatosAUto(int idAuto) {
+        auto = control.traerAuto(idAuto);
+        
+        txtModelo.setText(auto.getModelo());
+        txtMarca.setText(auto.getMarca());
+        txtMotor.setText(auto.getMotor());
+        txtColor.setText(auto.getColor());
+        txtPlaca.setText(auto.getPlaca());
+        txtNumPuertas.setText(String.valueOf(auto.getNumPuertas()));
+        
+    }
+    
+    public void mostrarMensaje(String mensaje, String tipo, String titulo){
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if(tipo.equals("Info")){
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(tipo.equals("Error")){
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+        
+    }
 }

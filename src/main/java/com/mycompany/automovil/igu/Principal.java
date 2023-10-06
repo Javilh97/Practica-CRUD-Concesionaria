@@ -1,6 +1,8 @@
 
 package com.mycompany.automovil.igu;
 
+import javax.swing.JOptionPane;
+
 public class Principal extends javax.swing.JFrame {
 
     /**
@@ -51,6 +53,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,6 +122,19 @@ public class Principal extends javax.swing.JFrame {
         consulta.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnConsultaActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        String botones[] = {"Cerrar","Cancelar"};
+        int seleccion = JOptionPane.showOptionDialog(this,
+                "¿Desea cerrar la aplicación?", "Salir",
+                0, JOptionPane.WARNING_MESSAGE, null,
+                botones, this);
+        if(seleccion == JOptionPane.YES_OPTION){
+            System.exit(0);
+        } else if(seleccion == JOptionPane.NO_OPTION){
+            
+        }
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
